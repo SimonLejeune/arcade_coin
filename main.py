@@ -6,7 +6,7 @@ import requests
 from dbHandler import Connection
 from config import settings
 
-db = Connection(settings['database'], settings['create_users_table'])
+db = Connection()
 
 
 
@@ -27,16 +27,8 @@ class printobserver(CardObserver):
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
                 data = requests.get(url=url).json()
                 email = data['login']
-                status = db.checkUser(uid, email)
+                status = db.removeCredit(uid, email)
                 print status
-            try:
-                if (data['login']):
-                    email = data['login']
-                    print (email)
-                    status = db.checkUser(uid, email)
-                    print status
-            except:
-                print "ERROR bad card"
 
 
 print("place card on reader")
