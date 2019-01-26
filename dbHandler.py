@@ -18,6 +18,8 @@ class Connection:
     def manageUser(self, uid, email):
         self.c.execute('SELECT * FROM users')
         users = self.c.fetchall()
+        if users is None:
+            self.insertNew(uid, 1, email)
         for user in users:
             print "user : ", user
             if user is None:
