@@ -17,11 +17,10 @@ class Connection:
 
     def insertNew(self, uid, credit=1, email=""):
         self.c.execute(
-            'INSERT OR IGNORE INTO users(uid, credit, email, creation_date) VALUES( {}, {}, "{}", datetime("now"))'.format(
+            'INSERT OR IGNORE INTO users(uid, credit, email, creation_date) VALUES( ?,?,?, datetime("now"))'.format(
                 uid, credit, email))
         self.conn.commit()
         return 'created'
-
 
     def removeCredit(self, uid):
         self.c.execute('SELECT * FROM users WHERE uid=' + str(uid))
