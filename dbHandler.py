@@ -15,7 +15,7 @@ class Connection:
                 print(e)
         self.conn.row_factory = sqlite3.Row
         self.c = self.conn.cursor()
-        self.insertNext = False
+        self.insertNext = True
 
     def insertNew(self, uid, credit=1, email=""):
         self.c.execute(
@@ -37,9 +37,6 @@ class Connection:
             return 'reject'
         type = user[2]
         credits = user[3]
-        if type == -1:
-            self.insertNext = True
-            return 'create'
         if user is None or credits < 1 and type > 0:
             return 'reject'
 
