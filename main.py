@@ -8,6 +8,7 @@ from config import settings
 
 db = Connection(settings['database'])
 
+
 class printobserver(CardObserver):
     def update(self, observable, (addedcards, removedcards)):
         for card in addedcards:
@@ -25,14 +26,18 @@ class printobserver(CardObserver):
                 print "uid : ", uid
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
                 data = requests.get(url=url).json()
-                try:
-                    if (data['login']):
-                        email = data['login']
-                        print (email)
-                        status = db.checkUser(uid, email)
-                        print status
-                except:
-                    print "ERROR bad card"
+                email = data['login']
+                print (email)
+                status = db.checkUser(uid, email)
+                print status
+            try:
+                if (data['login']):
+                    email = data['login']
+                    print (email)
+                    status = db.checkUser(uid, email)
+                    print status
+            except:
+                print "ERROR bad card"
 
 
 print("place card on reader")
