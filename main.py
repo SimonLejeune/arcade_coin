@@ -30,10 +30,7 @@ class printobserver(CardObserver):
                         email = data['login']
                         print (email)
                         status = db.checkUser(uid, email)
-                        if status == 'accept':
-                            print status
-                        elif status == 'reject':
-                            print status
+                        print status
                 except:
                     print "ERROR bad card"
 

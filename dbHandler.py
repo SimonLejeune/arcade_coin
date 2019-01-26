@@ -11,13 +11,14 @@ class Connection:
         print "check user"
         self.c.execute('SELECT * FROM user WHERE tag=' + str(ID))
         user = self.c.fetchone()
+        print user
         if user == None:
             self.insertNew(ID, 1, 10, email)
         else:
             self.removeCredits(ID)
 
 
-    def insertNew(self, ID, type=1, credit=10, name='user'):
+    def insertNew(self, ID, type=1, credit=1, name='user'):
         print "insert new"
         self.c.execute(
             'INSERT OR IGNORE INTO user(tag, type, credit, name, creation_date) VALUES( {}, {}, {}, "{}", datetime("now"))'.format(
