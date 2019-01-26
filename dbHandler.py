@@ -19,7 +19,7 @@ class Connection:
         self.c.execute('SELECT * FROM users')
         users = self.c.fetchall()
         for user in users:
-            print user
+            print "user : ", user
             if user is None:
                 self.insertNew(uid, 1, email)
             else:
