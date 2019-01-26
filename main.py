@@ -3,8 +3,10 @@ from smartcard.scard import *
 from smartcard.util import *
 import time
 import requests
+from dbHandler import Connection
+from config import settings
 
-
+db = Connection(settings['database'])
 
 class printobserver(CardObserver):
     def update(self, observable, (addedcards, removedcards)):
