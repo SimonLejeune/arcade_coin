@@ -28,7 +28,9 @@ class printobserver(CardObserver):
                 data = resp.json()
                 try:
                     if (data['login']):
-                        print (data['login'])
+                        email = data['login']
+                        print (email)
+                        db.checkUser(uid, email)
                 except:
                     print "ERROR bad card"
 
