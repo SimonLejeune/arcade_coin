@@ -22,10 +22,11 @@ class Connection:
         return 'created'
 
 
-    def removeCredit(self, uid):
+    def removeCredit(self, uid, email):
         self.c.execute('SELECT * FROM users WHERE uid=' + str(uid))
         user = self.c.fetchone()
         if user == None:
+            self.insertNew(uid, 1, email)
             return 'reject'
         credits = user[3]
         if user is None or credits < 1:
