@@ -7,8 +7,10 @@ class Connection:
         self.c = self.conn.cursor()
         self.insertNext = False
 
-    def checkUser(self, ID, name):
+    def checkUser(self, ID, email):
         print "check user"
+        self.insertNew(ID, 1, 10, email)
+
 
     def insertNew(self, ID, type=1, credit=10, name='user'):
         print "insert new"
