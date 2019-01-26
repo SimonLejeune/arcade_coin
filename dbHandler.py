@@ -9,13 +9,14 @@ class Connection:
 
     def checkUser(self, ID, email):
         print "check user"
-        self.c.execute('SELECT * FROM user WHERE tag=' + str(ID))
-        user = self.c.fetchone()
-        print user
-        if user == None:
-            self.insertNew(ID, 1, 10, email)
-        else:
-            self.removeCredits(ID)
+        self.c.execute('SELECT * FROM user')
+        rows = self.c.fetchall()
+        for row in rows:
+            print(row)
+        #if user == None:
+            #self.insertNew(ID, 1, 10, email)
+        #else:
+            #self.removeCredits(ID)
 
 
     def insertNew(self, ID, type=1, credit=1, name='user'):
