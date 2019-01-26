@@ -2,6 +2,8 @@ from smartcard.CardMonitoring import CardMonitor, CardObserver
 from smartcard.scard import *
 from smartcard.util import *
 import time
+import requests
+
 
 
 class printobserver(CardObserver):
@@ -19,6 +21,10 @@ class printobserver(CardObserver):
                 uid = toHexString(response, format=0)
                 uid = uid.replace(" ", "")[:-4]
                 print "uid : ", uid
+                url = 'https://whatsupdoc.epitech.eu/card/' + uid
+                resp = requests.get(url=url)
+                data = resp.json()
+                print "data", data
 
 
 print("place card on reader")
