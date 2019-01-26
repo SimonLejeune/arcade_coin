@@ -13,6 +13,7 @@ class Connection:
                     'CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, uid TEXT UNIQUE, credit INTEGER, email TEXT, creation_date DATETIME, last_played DATETIME);')
             except Error as e:
                 print(e)
+        self.c = self.conn.cursor()
 
     def insertNew(self, uid, credit=1, email=""):
         self.c.execute(
