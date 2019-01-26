@@ -24,13 +24,16 @@ class printobserver(CardObserver):
                 uid = uid.replace(" ", "")[:-4]
                 print "uid : ", uid
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
-                resp = requests.get(url=url)
-                data = resp.json()
+                data = requests.get(url=url).json()
                 try:
                     if (data['login']):
                         email = data['login']
                         print (email)
-                        db.checkUser(uid, email)
+                        status = db.checkUser(uid, email)
+                        if status == 'accept':
+                            print status
+                        elif status == 'reject':
+                            print status
                 except:
                     print "ERROR bad card"
 
