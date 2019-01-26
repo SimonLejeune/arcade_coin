@@ -24,7 +24,11 @@ class printobserver(CardObserver):
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
                 resp = requests.get(url=url)
                 data = resp.json()
-                print "data", data
+                try:
+                    if (data['login']):
+                        print (data['login'])
+                except:
+                    print "ERROR bad card"
 
 
 print("place card on reader")
