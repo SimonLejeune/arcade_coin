@@ -6,8 +6,7 @@ import requests
 from dbHandler import Connection
 from config import settings
 
-db = Connection()
-
+db = Connection(settings['database'])
 
 
 class printobserver(CardObserver):
