@@ -19,12 +19,8 @@ class printobserver( CardObserver ):
              SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1)
             hresult, response = SCardTransmit(hcard,dwActiveProtocol,[0xFF,0xCA,0x00,0x00,0x00])
             uid = toHexString(response, format=0)
-            print("card atr : ", response)  # cards ATR
-            print("cart uid : ", uid)  # Cards UID
-            id = uid.replace(" ", "")
-            print("id : ", id)
-            id = id[:-4]
-            print("new id : ", id)
+            uid = uid.replace(" ", "")[:-4]
+            print("uid : ", uid)
 
 
 print("place card on reader")
@@ -33,4 +29,4 @@ while 1:
     cardobserver = printobserver()
     cardmonitor.addObserver( cardobserver )
     cardmonitor.deleteObserver( cardobserver )
-    time.sleep( 2 )
+    time.sleep( 1 )
