@@ -15,6 +15,16 @@ class Connection:
                 print(e)
         self.c = self.conn.cursor()
 
+    def manageUser(self, uid, email):
+        self.c.execute('SELECT * FROM users')
+        users = self.c.fetchall()
+        for user in users:
+            print user
+            if user is None:
+                self.insertNew(uid, 1, email)
+            else:
+                self.removeCredit(uid)
+
     def insertNew(self, uid, credit=1, email=""):
         self.c.execute(
             'INSERT OR IGNORE INTO users(uid, credit, email, creation_date) VALUES( ?, ?, ?, datetime("now"))',
@@ -22,11 +32,10 @@ class Connection:
         self.conn.commit()
         return 'created'
 
-    def removeCredit(self, uid, email):
+    def removeCredit(self, uid):
         self.c.execute('SELECT * FROM users WHERE uid=' + uid)
         user = self.c.fetchone()
-        if user == None:
-            self.insertNew(uid, 1, email)
+        if user is None:
             return 'reject'
         credits = user[3]
         if user is None or credits < 1:

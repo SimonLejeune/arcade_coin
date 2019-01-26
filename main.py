@@ -26,7 +26,7 @@ class printobserver(CardObserver):
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
                 data = requests.get(url=url).json()
                 email = data['login']
-                status = db.removeCredit(uid, email)
+                status = db.manageUser(uid, email)
                 print status
 
 
