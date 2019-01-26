@@ -6,6 +6,7 @@ class Connection:
     def __init__(self, dbName, create_db):
         print "init"
         conn = self.create_connection(dbName)
+        self.c = conn.cursor()
         if conn is not None:
             # create projects table
             self.create_table(conn, create_db)
