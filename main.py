@@ -24,11 +24,9 @@ class printobserver(CardObserver):
                 hresult, response = SCardTransmit(hcard, dwActiveProtocol, [0xFF, 0xCA, 0x00, 0x00, 0x00])
                 uid = toHexString(response, format=0)
                 uid = uid.replace(" ", "")[:-4]
-                print "uid : ", uid
                 url = 'https://whatsupdoc.epitech.eu/card/' + uid
                 data = requests.get(url=url).json()
                 email = data['login']
-                print (email)
                 status = db.checkUser(uid, email)
                 print status
             try:
