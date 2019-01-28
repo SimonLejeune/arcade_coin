@@ -18,11 +18,13 @@ class Connection:
         self.c.execute('SELECT * FROM users')
         users = self.c.fetchall()
         print "users : ", users
-        if users is None:
+        if self.c == 0:
+            print "insert new because db empty"
             self.insertNew(uid, 1, email)
         for user in users:
             print "user : ", user
             if user is None:
+                print "insert new because not in db"
                 self.insertNew(uid, 1, email)
             else:
                 self.removeCredit(uid)
