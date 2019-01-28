@@ -28,7 +28,6 @@ class printobserver(CardObserver):
                 email = data['login']
                 print email
                 status = db.manageUser(uid, email)
-                print status
 
 
 print("place card on reader")
