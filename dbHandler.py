@@ -6,7 +6,6 @@ class Connection:
     def __init__(self, dbName):
         self.conn = sqlite3.connect(dbName)
         if self.conn is not None:
-            # create projects table
             try:
                 c = self.conn.cursor()
                 c.execute(
