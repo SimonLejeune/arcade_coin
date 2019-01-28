@@ -18,6 +18,7 @@ class Connection:
         self.c.execute('SELECT * FROM users')
         users = self.c.fetchall()
         print "users : ", users
+        print "cursor : ", self.c
         if self.c == 0:
             print "insert new because db empty"
             self.insertNew(uid, 1, email)
