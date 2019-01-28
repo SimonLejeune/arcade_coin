@@ -19,7 +19,7 @@ class Connection:
         users = self.c.fetchall()
         print "users : ", users
         print "cursor : ", self.c.rowcount
-        if self.c.rowcount == 0:
+        if self.c.rowcount == -1:
             print "insert new because db empty"
             self.insertNew(uid, 1, email)
         for user in users:
