@@ -2,8 +2,13 @@
  * Created by julien on 17/04/17.
  */
 
-var request = require('request'); var sleep = require('sleep-sync'); var { NFC } = require('nfc-pcsc'); var S = require('string'); var mongoose = require('mongoose'); var User = require('./models/user.js'); var config 
-= require('./config.json');
+var request = require('request');
+var sleep = require('sleep-sync');
+var { NFC } = require('nfc-pcsc');
+var S = require('string');
+var mongoose = require('mongoose');
+var User = require('./models/user.js');
+var config = require('./config.json');
 
 var connectString = 'mongodb://' + config.dbUser + ':' + config.dbPassword + '@ds147974.mlab.com:47974/arcade_borne'
 
