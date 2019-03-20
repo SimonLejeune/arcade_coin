@@ -9,6 +9,8 @@ var S = require('string');
 var mongoose = require('mongoose');
 var User = require('./models/user.js');
 var config = require('./config.json');
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+var coin = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 
 var connectString = 'mongodb://' + config.dbUser + ':' + config.dbPassword + '@ds147974.mlab.com:47974/arcade_borne'
 
@@ -42,10 +44,10 @@ nfc.on('reader', reader => {
 							if (doc.uid != uid)
 								doc.uid = uid;
 							if (doc.isAdmin === true) {
-								keySend();
+								pushButton();
 							} else if (doc.credits > 0) {
 								doc.credits = doc.credits - 1;
-								keySend();
+								pushButton();
 							}
 							doc.save();
 						} else {
@@ -56,7 +58,7 @@ nfc.on('reader', reader => {
 								isAdmin: false
 							});
 							userObj.save();
-							keySend();
+							pushButton();
 						}
 					});
 				}
@@ -70,6 +72,12 @@ nfc.on('reader', reader => {
         console.log(`An error occured with the reader: ${err}`);
     });
 });
+
+function pushButton() { //function to start blinking
+	console.log("PUSH BUTTON")
+  coin.writeSync(1); //set pin state to 1 (turn LED on)
+  coin.writeSync(0); //set pin state to 0 (turn LED off)
+}
 
 nfc.on('error', err => {
     console.log(`Error occurred: ${err}`);

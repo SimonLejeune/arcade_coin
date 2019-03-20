@@ -8,6 +8,7 @@
     "mongoose": "^5.4.7",
     "nfc-pcsc": "^0.7.1",
     "node-cron": "^2.0.3",
+    "onoff": "^4.1.1",
     "request": "^2.88.0",
     "sleep-sync": "^2.1.3",
     "string": "^3.3.3"
