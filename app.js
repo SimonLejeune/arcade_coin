@@ -76,6 +76,7 @@ nfc.on('reader', reader => {
 function pushButton() { //function to start blinking
 	console.log("PUSH BUTTON")
   coin.writeSync(1); //set pin state to 1 (turn LED on)
+	sleep(1);
   coin.writeSync(0); //set pin state to 0 (turn LED off)
 }
 
