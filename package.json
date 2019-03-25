@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "child_process": "^1.0.2",
     "mongoose": "^5.4.7",
     "nfc-pcsc": "^0.7.1",
     "node-cron": "^2.0.3",

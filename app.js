@@ -20,11 +20,6 @@ const nfc = new NFC(); const apiUrl = 'https://whatsupdoc.epitech.eu/card/';
 
 let lTrigger = Date.now();
 
-const spawn = require("child_process").spawn;
-const keySend =  function () {
-	spawn('python',["keyboard.py"]);
-}
-
 nfc.on('reader', reader => {
     console.log(`${reader.reader.name} device attached`);
     reader.on('card', card => {
